@@ -65,22 +65,31 @@ with open('Procedural_Counties.csv') as csvfile:
 
 def newCandidate():
     correct = False
-    while correct = False:
+    while correct == False:
         party = input("Your candidate's party: D or R? ")
         correct = True
-        regex = r'(^[Dd]((em)|(emocrat))?$)|(^[Rr]((ep)|(epublican))?$)'
-        sekeer = re.compile(regex)
-        if not(seeker.search(party).string == party): correct = False
+        regex = r'^(([Dd]((em)|(emocrat))?)|(^[Rr]((ep)|(epublican))?))$'
+        seeker = re.compile(regex)
+        if seeker.search(party) == None: correct = False
     gender = input("Your candidate's gender: M or F? ")
     if not(gender == 'M' or gender == 'F'):
         return 'Incorrect input'
-    race = input ("Your candidate's race: White, Black, or Hispanic? ")
-    if not(race == 'White' or race == 'Black' or race == 'Hispanic'):
-        return 'Incorrect input'
-    experience = input("Prior political experience? (Y/N) ")
-    if experience == 'Y': experience = True
-    elif experience == 'N': experience = False
-    else: return 'Incorrect input'
+    correct = False
+    while correct == False:
+        race = input ("Your candidate's race: White, Black, Hispanic, or Other? ")
+        correct = True
+        regex = r'^(([Ww](hite)?)|([Bb](lack)?)|([Hh](ispanic)?)|([Oo](ther)?))$'
+        seeker = re.compile(regex)
+        if seeker.search(race) == None: correct = False
+    correct = False
+    while correct == False:
+        experience = input("Prior political experience? (Y/N) ")
+        correct = True
+        regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+        seeker = re.compile(regex)
+        if seeker.search(experience) == None: correct = False
+        elif 'y' in experience or 'Y' in experience: experience = True
+        elif 'n' in experience or 'N' in experience: experience = False
     return Candidate(party, gender, race, experience)
 
 def newOpponent():
