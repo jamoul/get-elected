@@ -121,8 +121,8 @@ def election(candidate):
         pop += c.pop
     print('county',' ','margin')
     for c in counties:
-        print(c.name.split()[0],' '*(16-len(c.name.split()[0])),round(c.margin),' '*(8-len(round(c.margin))),round((c.margin/int(c.pop)),4))
-    print("Overall margin:",round(margin),' '*(8-len(round(margin))),round(margin/pop,4))
+        print(c.name.split()[0],' '*(16-len(c.name.split()[0])),round(c.margin),' '*(8-len(str(round(c.margin)))),round((c.margin/int(c.pop)),4))
+    print("Overall margin: ",round(margin),' '*(8-len(str(round(margin)))),round(margin/pop,4))
 
 c = newCandidate()
 c.positions()
