@@ -69,8 +69,8 @@ def newCandidate():
         party = input("Your candidate's party: D or R? ")
         correct = True
         regex = r'^([Dd]((em)|(emocrat))?)|([Rr]((ep)|(epublican))?)$'
-        sekeer = re.compile(regex)
-        if not(seeker.search(party).string == party): correct = False
+        seeker = re.compile(regex)
+        if seeker.search(party) == None: correct = False
     correct = False
     while correct == False:
         gender = input("Your candidate's gender: M, F, or O? ")
