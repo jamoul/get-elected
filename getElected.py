@@ -1,4 +1,4 @@
-import csv,sys
+import csv,sys,re
 
 class County:
     def __init__(self, name, pop, lean, white, black, hispanic):
@@ -51,7 +51,7 @@ class Candidate:
         if immigration == 'Y': self.immigration == False
         elif immigration == 'N': self.immigration == True
         else: return "Incorrect input"
-
+        
 with open('Procedural_Counties.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     counties = []
@@ -59,9 +59,13 @@ with open('Procedural_Counties.csv') as csvfile:
         counties.append(County(row['name'], int(row['pop']), float(row['pvi']), int(row['whiNum']), int(row['blaNum']), int(row['hispNum'])))
 
 def newCandidate():
-    party = input("Your candidate's party: D or R? ")
-    if not(party == 'D' or party == 'R'):
-        return 'Incorrect input'
+    correct = False
+    while correct = False:
+        party = input("Your candidate's party: D or R? ")
+        correct = True
+        regex = r'(^[Dd]((em)|(emocrat))?$)|(^[Rr]((ep)|(epublican))?$)'
+        sekeer = re.compile(regex)
+        if not(seeker.search(party).string == party): correct = False
     gender = input("Your candidate's gender: M or F? ")
     if not(gender == 'M' or gender == 'F'):
         return 'Incorrect input'
