@@ -72,6 +72,8 @@ def newCandidate():
         regex = r'^(([Dd]((em)|(emocrat))?)|([Rr]((ep)|(epublican))?))$'
         seeker = re.compile(regex)
         if seeker.search(party) == None: correct = False
+        elif 'r' in party or 'R' in party: party = 'R'
+        elif 'd' in party or 'D' in party: party = 'D'
     correct = False
     while correct == False:
         gender = input("Your candidate's gender: M, F, or O? ")
@@ -95,7 +97,7 @@ def newCandidate():
         if seeker.search(experience) == None: correct = False
         elif 'y' in experience or 'Y' in experience: experience = True
         elif 'n' in experience or 'N' in experience: experience = False
-    return Candidate(name, party, gender, race, experience)
+    return Candidate(name,party, gender, race, experience)
 
 def newOpponent():
     opponent = Candidate() 
@@ -120,10 +122,10 @@ def election(candidate):
         else: c.margin += .16*((c.white*((31-43)/74)) + (c.black*((16-63)/79)) + (c.hispanic*((32-43)/75)))
         margin += c.margin
         pop += c.pop
-    print('county',' ','margin')
+    print('county',' '*10,'margin')
     for c in counties:
-        print(c.name.split()[0],' '*(16-len(c.name.split()[0])),round(c.margin),' '*(8-len(str(round(c.margin)))),round((c.margin/int(c.pop)),4))
-    print("Overall margin: ",round(margin),' '*(8-len(str(round(margin)))),round(margin/pop,4))
+        print(c.name.split()[0],' '*(16-len(c.name.split()[0])),' '*(8-len(str(round(c.margin)))),round(c.margin),' '*(1 if c.margin < 0 else 2),round((c.margin/int(c.pop)),4))
+    print("Overall margin: ",' '*(9-len(str(round(margin)))),round(margin),' '*(9-len(str(round(margin)))),round(margin/pop,4))
 
 c = newCandidate()
 c.positions()
