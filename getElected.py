@@ -122,7 +122,7 @@ def election(candidate):
         else: c.margin += .16*((c.white*((31-43)/74)) + (c.black*((16-63)/79)) + (c.hispanic*((32-43)/75)))
         margin += c.margin
         pop += c.pop
-    print('county',' '*10,'margin')
+    print('county',' '*13,'margin',' '*2,'percent')
     for c in counties:
         print(c.name.split()[0],' '*(16-len(c.name.split()[0])),' '*(8-len(str(round(c.margin)))),round(c.margin),' '*(1 if c.margin < 0 else 2),round((c.margin/int(c.pop)),4))
     print("Overall margin: ",' '*(9-len(str(round(margin)))),round(margin),' '*(1 if margin < 0 else 2),round(margin/pop,4))
