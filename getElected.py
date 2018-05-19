@@ -15,7 +15,8 @@ class County:
         return str(self)
 
 class Candidate:
-    def __init__(self, party, gender = 'M', race = 'White', experience = False):
+    def __init__(self, name, party, gender = 'M', race = 'White', experience = False):
+        self.name = name
         self.party = party
         self.gender = gender
         self.race = race
@@ -26,6 +27,10 @@ class Candidate:
         self.gunControl = None
         self.healthCare = None
         self.immigration = None
+    def __str__(self):
+        return self.name + '(' + self.party + ')'
+    def __repr__(self):
+        return str(self)
     def positions(self):
         guns = input("Do you support a greater degree of gun control? (Y/N) ")
         if guns == 'Y': self.gunControl = True
