@@ -64,6 +64,7 @@ with open('Procedural_Counties.csv') as csvfile:
         counties.append(County(row['name'], int(row['pop']), float(row['pvi']), int(row['whiNum']), int(row['blaNum']), int(row['hispNum'])))
 
 def newCandidate():
+    name = None
     correct = False
     while correct == False:
         party = input("Your candidate's party: D or R? ")
@@ -94,7 +95,7 @@ def newCandidate():
         if seeker.search(experience) == None: correct = False
         elif 'y' in experience or 'Y' in experience: experience = True
         elif 'n' in experience or 'N' in experience: experience = False
-    return Candidate(party, gender, race, experience)
+    return Candidate(name, party, gender, race, experience)
 
 def newOpponent():
     opponent = Candidate() 
