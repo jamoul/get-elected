@@ -94,8 +94,13 @@ with open('Procedural_Counties.csv') as csvfile:
         counties.append(County(row['name'], int(row['pop']), float(row['pvi']), int(row['whiNum']), int(row['blaNum']), int(row['hispNum'])))
 
 def newCandidate():
-    name = None
     correct = False
+    while correct == False: 
+        name = input("Your candidate's name?")
+        correct = True
+        regex = r'^[0-9A-Z][0-9a-zA-Z]*( [0-9A-Z][0-9a-zA-Z]*)?( [0-9A-Z][0-9a-zA-Z]*)?$'
+        seeker = re.compile(regex)
+        if seeker.search(name) == None: correct = False
     while correct == False:
         party = input("Your candidate's party: D or R? ")
         correct = True
@@ -135,6 +140,9 @@ def newCandidate():
         elif 'y' in experience or 'Y' in experience: experience = True
         elif 'n' in experience or 'N' in experience: experience = False
     return Candidate(name,party, gender, race, experience)
+
+def newOpponent():
+    opponent = Candidate() 
 
 def election(candidate):
     margin = 0
