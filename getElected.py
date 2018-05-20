@@ -15,7 +15,7 @@ class County:
         return str(self)
 
 class Candidate:
-    def __init__(self, name, party, gender = 'M', race = 'White', experience = False):
+    def __init__(self, name, party, gender, race, experience = False):
         self.name = name
         self.party = party
         self.gender = gender
@@ -28,7 +28,7 @@ class Candidate:
         self.healthCare = None
         self.immigration = None
     def __str__(self):
-        return self.name + '(' + self.party + ')'
+        return self.name + ' (' + self.party + ')'
     def __repr__(self):
         return str(self)
     def positions(self):
@@ -142,6 +142,9 @@ def election(candidate):
     for c in counties:
         if candidate.party == 'R': c.lean = -c.lean
         c.margin = c.lean*c.pop*.01
+        if candidate.gender == 'F':
+            if candidate.party == 'D': c.margin += 0.10
+            elif candidate.party == 'R': c.margin -= 0.05
         c.white = c.white*(.730 if candidate.race == 'W' else .660)
         c.black = c.black*(.626 if candidate.race == 'B' else .566)
         c.hispanic = c.hispanic*(.500 if candidate.race == 'H' else .452)
