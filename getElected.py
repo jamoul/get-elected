@@ -88,6 +88,10 @@ def newCandidate():
         regex = r'^(([Ww](hite)?)|([Bb](lack)?)|([Hh](ispanic)?)|([Oo](ther)?))$'
         seeker = re.compile(regex)
         if seeker.search(race) == None: correct = False
+        elif 'w' in race or 'W' in race: race = 'W'
+        elif 'b' in race or 'B' in race: race = 'B'
+        elif race == 'h' or 'H' in race or 'p' in race: race = 'H'
+        elif 'o' in race or 'O' in race: race = 'O'
     correct = False
     while correct == False:
         experience = input("Prior political experience? (Y/N) ")
@@ -108,6 +112,9 @@ def election(candidate):
     for c in counties:
         if candidate.party == 'R': c.lean = -c.lean
         c.margin = c.lean*c.pop*.01
+        c.white = c.white*(.730 if candidate.race == 'W' else .660)
+        c.black = c.black*(.626 if candidate.race == 'B' else .566)
+        c.hispanic = c.hispanic*(.500 if candidate.race == 'H' else .452)
         if candidate.proChoice == True: c.margin += .16*((c.white*((35-35)/70)) + (c.black*((49-13)/62)) + (c.hispanic*((44-24)/68)))
         else: c.margin += .16*((c.white*((35-35)/70)) + (c.black*((13-49)/62)) + (c.hispanic*((24-44)/68)))
         if candidate.gunControl == True: c.margin += .16*((c.white*((40-43)/83)) + (c.black*((60-17)/77)) + (c.hispanic*((43-31)/74)))
@@ -122,9 +129,9 @@ def election(candidate):
         else: c.margin += .16*((c.white*((31-43)/74)) + (c.black*((16-63)/79)) + (c.hispanic*((32-43)/75)))
         margin += c.margin
         pop += c.pop
-    print('county',' '*13,'margin',' '*2,'percent')
+    print('county',' '*13,'margin',' '*2,'margin/electorate')
     for c in counties:
-        print(c.name.split()[0],' '*(16-len(c.name.split()[0])),' '*(8-len(str(round(c.margin)))),round(c.margin),' '*(1 if c.margin < 0 else 2),round((c.margin/int(c.pop)),4))
+        print((c.name.split()[0] if not(counties[64] == c) else "New Hanover"),' '*((16-len(c.name.split()[0])) if not(counties[64] == c) else (5)),' '*(8-len(str(round(c.margin)))),round(c.margin),' '*(1 if c.margin < 0 else 2),round((c.margin/int(c.pop)),4))
     print("Overall margin: ",' '*(9-len(str(round(margin)))),round(margin),' '*(1 if margin < 0 else 2),round(margin/pop,4))
 
 c = newCandidate()
