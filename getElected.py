@@ -32,30 +32,60 @@ class Candidate:
     def __repr__(self):
         return str(self)
     def positions(self):
-        guns = input("Do you support a greater degree of gun control? (Y/N) ")
-        if guns == 'Y': self.gunControl = True
-        elif guns == 'N': self.gunControl = False
-        else: return "Incorrect input"
-        abort = input("Do you believe that abortion should be legal in most to all cases? (Y/N) ")
-        if abort == 'Y': self.proChoice = True
-        elif abort == 'N': self.proChoice = False
-        else: return "Incorrect input"
-        gay = input("Do you believe that LGBT people should be protected from discrimination based on their sexual orientation or gender identity? (Y/N) ")
-        if gay == 'Y': self.gayRights = True
-        elif gay == 'N': self.gayRights = False
-        else: return "Incorrect input"
-        tax = input("Do you believe that the top tax bracket and/or corporate taxes should be raised to create a more robust social safety net? (Y/N) ")
-        if tax == 'Y': self.taxCuts = False
-        elif tax == 'N': self.taxCuts = True
-        else: return "Incorrect input"
-        health = input("Do you believe that the government has a responsibility to provide or assist in providing healthcare to the population? (Y/N) ")
-        if health == 'Y': self.healthCare = True
-        elif health == 'N': self.healthCare = False
-        else: return "Incorrect input"
-        immigration  = input("Should the US make it more difficult for illegal immigrants to enter and stay in the country? (Y/N) ")
-        if immigration == 'Y': self.immigration == False
-        elif immigration == 'N': self.immigration == True
-        else: return "Incorrect input"
+        correct = False
+        while correct == False:
+            guns = input("Do you support a greater degree of gun control? (Y/N) ")
+            correct = True
+            regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+            seeker = re.compile(regex)
+            if seeker.search(guns) == None: correct = False
+            elif 'y' in guns or 'Y' in guns: self.gunControl = True
+            elif 'n' in guns or 'N' in guns: self.gunControl = False
+        correct = False
+        while correct == False:
+            abort = input("Do you believe that abortion should be legal in most to all cases? (Y/N) ")
+            correct = True
+            regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+            seeker = re.compile(regex)
+            if seeker.search(abort) == None: correct = False
+            elif 'y' in abort or 'Y' in abort: self.proChoice = True
+            elif 'n' in abort or 'N' in abort: self.proChoice = False
+        correct = False
+        while correct == False:
+            gay = input("Do you believe that LGBT people should be protected from discrimination based on their sexual orientation or gender identity? (Y/N) ")
+            correct = True
+            regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+            seeker = re.compile(regex)
+            if seeker.search(gay) == None: correct = False
+            elif 'y' in gay or 'Y' in gay: self.gayRights = True
+            elif 'n' in gay or 'N' in gay: self.gayRights = False
+        correct = False
+        while correct == False:
+            tax = input("Do you believe that the top tax bracket and/or corporate taxes should be raised to create a more robust social safety net? (Y/N) ")
+            correct = True
+            regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+            seeker = re.compile(regex)
+            if seeker.search(tax) == None: correct = False
+            elif 'y' in tax or 'Y' in tax: self.taxCuts = False
+            elif 'n' in tax or 'N' in tax: self.taxCuts = True
+        correct = False
+        while correct == False:
+            health = input("Do you believe that the government has a responsibility to provide or assist in providing healthcare to the population? (Y/N) ")
+            correct = True
+            regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+            seeker = re.compile(regex)
+            if seeker.search(health) == None: correct = False
+            elif 'y' in health or 'Y' in health: self.healthCare = True
+            elif 'n' in health or 'N' in health: self.healthCare = False
+        correct = False
+        while correct == False:
+            immigration  = input("Should the US make it more difficult for illegal immigrants to enter and stay in the country? (Y/N) ")
+            correct = True
+            regex = r'^(([Yy](es)?)|([Nn](o)?))$'
+            seeker = re.compile(regex)
+            if seeker.search(immigration) == None: correct = False
+            elif 'y' in immigration or 'Y' in immigration: self.immigration = False
+            elif 'n' in immigration or 'N' in immigration: self.immigration = True
         
 with open('Procedural_Counties.csv') as csvfile:
     reader = csv.DictReader(csvfile)
