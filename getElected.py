@@ -136,9 +136,6 @@ def newCandidate():
         elif 'n' in experience or 'N' in experience: experience = False
     return Candidate(name,party, gender, race, experience)
 
-def newOpponent():
-    opponent = Candidate() 
-
 def election(candidate):
     margin = 0
     pop = 0
