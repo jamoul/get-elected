@@ -1,4 +1,4 @@
-import csv,sys,re
+import csv,re
 
 class County:
     def __init__(self, name, pop, lean, white, black, hispanic):
