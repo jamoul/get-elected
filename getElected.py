@@ -96,7 +96,7 @@ with open('Procedural_Counties.csv') as csvfile:
 def newCandidate():
     correct = False
     while correct == False: 
-        name = input("Your candidate's name?")
+        name = input("Your candidate's name? ")
         correct = True
         regex = r'^[0-9A-Z][0-9a-zA-Z]*( [0-9A-Z][0-9a-zA-Z]*)?( [0-9A-Z][0-9a-zA-Z]*)?$'
         seeker = re.compile(regex)
