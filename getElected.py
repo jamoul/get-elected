@@ -1,4 +1,4 @@
-import csv,re
+import csv,sys,re
 
 class County:
     def __init__(self, name, pop, lean, white, black, hispanic):
@@ -15,7 +15,7 @@ class County:
         return str(self)
 
 class Candidate:
-    def __init__(self, name, party, gender, race, experience = False):
+    def __init__(self, name, party, gender, race, experience):
         self.name = name
         self.party = party
         self.gender = gender
@@ -102,7 +102,7 @@ def newCandidate():
         regex = r'^(([Dd]((em)|(emocrat))?)|([Rr]((ep)|(epublican))?))$'
         seeker = re.compile(regex)
         if seeker.search(party) == None: correct = False
-        elif party[0] == 'r' or 'R' in party: party = 'R'
+        elif 'r' in party or 'R' in party: party = 'R'
         elif 'd' in party or 'D' in party: party = 'D'
     correct = False
     while correct == False:
@@ -111,6 +111,9 @@ def newCandidate():
         regex = r'^(([Mm](ale)?)|([Ff](emale)?)|([Oo](ther)?))$'
         seeker = re.compile(regex)
         if seeker.search(gender) == None: correct = False
+        elif gender[0] == 'f' or gender[0] == 'F': gender = 'F'
+        elif gender[0] == 'm' or gender[0] == 'M': gender = 'M'
+        else: gender = 'O'
     correct = False
     while correct == False:
         race = input ("Your candidate's race: White, Black, Hispanic, or Other? ")
@@ -143,8 +146,8 @@ def election(candidate):
         if candidate.party == 'R': c.lean = -c.lean
         c.margin = c.lean*c.pop*.01
         if candidate.gender == 'F':
-            if candidate.party == 'D': c.margin += 0.10
-            elif candidate.party == 'R': c.margin -= 0.05
+            if candidate.party == 'D': c.margin += 0.02
+            elif candidate.party == 'R': c.margin -= 0.01
         c.white = c.white*(.730 if candidate.race == 'W' else .660)
         c.black = c.black*(.626 if candidate.race == 'B' else .566)
         c.hispanic = c.hispanic*(.500 if candidate.race == 'H' else .452)
