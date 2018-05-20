@@ -102,7 +102,7 @@ def newCandidate():
         regex = r'^(([Dd]((em)|(emocrat))?)|([Rr]((ep)|(epublican))?))$'
         seeker = re.compile(regex)
         if seeker.search(party) == None: correct = False
-        elif 'r' in party or 'R' in party: party = 'R'
+        elif party[0] == 'r' or 'R' in party: party = 'R'
         elif 'd' in party or 'D' in party: party = 'D'
     correct = False
     while correct == False:
