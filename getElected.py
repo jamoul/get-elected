@@ -101,6 +101,7 @@ def newCandidate():
         regex = r'^[0-9A-Z][0-9a-zA-Z]*( [0-9A-Z][0-9a-zA-Z]*)?( [0-9A-Z][0-9a-zA-Z]*)?$'
         seeker = re.compile(regex)
         if seeker.search(name) == None: correct = False
+    correct = False  
     while correct == False:
         party = input("Your candidate's party: D or R? ")
         correct = True
